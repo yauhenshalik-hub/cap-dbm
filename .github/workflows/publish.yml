@@ -15,16 +15,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           registry-url: https://registry.npmjs.org
+
+      # Trusted publishing (OIDC) requires npm CLI >=11.5.1; GitHub-hosted runners bundle an older one
+      - run: npm install -g npm@latest
 
       - run: npm install
 
       - run: npm test --if-present
 
       - name: Publish if version changed
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           PKG_NAME=$(node -p "require('./package.json').name")
           LOCAL_VERSION=$(node -p "require('./package.json').version")
@@ -32,5 +33,5 @@ jobs:
           if [ "$PUBLISHED_VERSION" = "$LOCAL_VERSION" ]; then
             echo "Version $LOCAL_VERSION already published, skipping."
           else
-            npm publish --access public --provenance
+            npm publish --access public
           fi
