@@ -1,0 +1,29 @@
+{
+  "name": "cap-dbm",
+  "version": "0.1.0",
+  "description": "State-based, Flyway-style database migrations generated from SAP CAP's CDS delta/init output.",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yauhenshalik-hub/cap-dbm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yauhenshalik-hub/cap-dbm/issues"
+  },
+  "homepage": "https://github.com/yauhenshalik-hub/cap-dbm#readme",
+  "bin": {
+    "cap-dbm": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "scripts",
+    "docs",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "@sap/cds": ">=10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
